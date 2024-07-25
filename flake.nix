@@ -12,7 +12,7 @@
 	  locale = "en_US.UTF-8";
 	  bootMode = "bios"; #uefi or bios
 	  #bootMountPath = "/dev/vda" #only for uefi boot
-	  grubDevice = "/dev/vda" # only for bios mode
+	  grubDevice = "/dev/vda"; # only for bios mode
           gpuType = "amd";
 	};
 
@@ -43,7 +43,7 @@
 	# Configure pkgs
 	# nixpkgs for server
 	# otherwise use nixpkgs-unstable
-	pkgs = (if (systemSettings.profile == "homelab") )
+	pkgs = (if (systemSettings.profile == "homelab")
       		then
                   pkgs-stable
               	else
@@ -130,7 +130,6 @@
             system = systemSettings.system;
             modules = [
               (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
-              ./system/bin/sky.nix
             ]; # load configuration.nix from selected PROFILE
             specialArgs = {
               # pass config variables from above
@@ -141,19 +140,19 @@
             };
           };
         };
- 	nixOnDroidConfigurations = {
-          inherit pkgs;
-          default = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
-            modules = [ ./profiles/nix-on-droid/configuration.nix ];
-          };
-          extraSpecialArgs = {
-            # pass config variables from above
-            inherit pkgs-stable;
-            inherit systemSettings;
-            inherit userSettings;
-            inherit inputs;
-          };
-        };
+# 	nixOnDroidConfigurations = {
+#          inherit pkgs;
+#          default = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
+#            modules = [ ./profiles/nix-on-droid/configuration.nix ];
+#          };
+#          extraSpecialArgs = {
+#            # pass config variables from above
+#            inherit pkgs-stable;
+#            inherit systemSettings;
+#            inherit userSettings;
+#            inherit inputs;
+#          };
+#        };
 
 #        packages = forAllSystems (system:
 #          let pkgs = nixpkgsFor.${system};
