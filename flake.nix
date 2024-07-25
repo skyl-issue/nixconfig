@@ -6,13 +6,13 @@
       # --- SYSTEM SETTINGS --- #
 	systemSettings = {
 	  system = "x86_64-linux";
-	  hostname = "fedora-virt";
+	  hostname = "nixos";
 	  profile = "personal";
- 	  timezone = "America/Los-Angeles";
+ 	  timezone = "America/Los_Angeles";
 	  locale = "en_US.UTF-8";
-	  #bootMode = "uefi"; #uefi or bios
-	  #bootMountPath = "/boot" #only for uefi boot
-	  #grubDevice = "" # only for bios mode
+	  bootMode = "bios"; #uefi or bios
+	  #bootMountPath = "/dev/vda" #only for uefi boot
+	  grubDevice = "/dev/vda" # only for bios mode
           gpuType = "amd";
 	};
 
